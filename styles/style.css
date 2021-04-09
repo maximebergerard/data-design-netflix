@@ -1,0 +1,114 @@
+html {
+  font-family: "Inconsolata", monospace;
+}
+
+body {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  color: white;
+  text-transform: uppercase;
+  font-size: 32px;
+}
+
+.scroll-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #E50914;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-icon .chevron::before {
+	border-style: solid;
+	border-width: 4px 4px 0 0;
+  border-radius: 2px;
+	content: '';
+	display: inline-block;
+	height: 0.45em;
+	vertical-align: top;
+	width: 0.45em;
+	transform: rotate(135deg);
+  margin-top: 4px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  padding: 0 80px;
+  color: white;
+  position: absolute;
+  top: 0;
+}
+
+nav img {
+  width: 130px;
+  margin-right: 134px;
+}
+
+nav .dates ul {
+  display: flex;
+  flex-direction: row;
+}
+
+nav .dates ul li {
+  font-size: 25px;
+  margin: 0 56px;
+}
+
+nav .dates ul li a{
+  color: white;
+  text-decoration: none;
+}
+
+nav .dates ul li:hover a{
+  text-decoration: underline;
+}
+
+.sections {
+  padding-top: 12vh;
+  height: 88vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.sections::-webkit-scrollbar {
+  display: none;
+}
+
+section {
+  height: 88vh;
+  padding-top: 60px;
+  scroll-snap-align: center;
+}
+
+section h1 {
+  font-size: 160px;
+  margin-left: 160px;
+  color: white;
+}
+
