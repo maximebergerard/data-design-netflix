@@ -124,11 +124,14 @@ section h1 {
   align-items: center;
 }
 
-.details p {
+.details p{
   text-transform: uppercase;
-  font-size: 32px;
-  color: #989898;
   margin-left: 108px;
+}
+
+.big-text {
+  font-size: 28px;
+  color: #989898;
 }
 
 #film2013, #film2016, #film2018, #film2019 {

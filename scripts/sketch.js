@@ -1,12 +1,13 @@
 let data;
 const scrollY = document.querySelector(".sections");
+
 scrollY.addEventListener("scroll", () => {
   findScroll();
-  if (scrollY.scrollTop >= 969 && scrollY.scrollTop <= 972) {
-    setup()
-  } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
+  if (scrollY.scrollTop >= 840 && scrollY.scrollTop <= 1100) {
     setup();
-  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2715) {
+  } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
+    setup();
+  } else if (scrollY.scrollTop >= 2100 && scrollY.scrollTop <= 2800) {
     setup();
   } else if (scrollY.scrollTop <= 90) {
     setup();
@@ -14,7 +15,6 @@ scrollY.addEventListener("scroll", () => {
 });
 
 function findScroll() {
-  console.log(scrollY.scrollTop);
   const indicator = document.querySelector(".scroll-indicator");
   if (scrollY.scrollTop < 100) {
     indicator.style.display = "flex";
@@ -28,26 +28,21 @@ function preload() {
 }
 
 function setup() {
-  films();
-}
-
-function films() {
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
-  if (scrollY.scrollTop >= 969 && scrollY.scrollTop <= 972) {
+  if (scrollY.scrollTop >= 840 && scrollY.scrollTop <= 1100) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
-  } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
+  } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
-  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2715) {
+  } else if (scrollY.scrollTop >= 2100 && scrollY.scrollTop <= 2800) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
   } else if (scrollY.scrollTop <= 90) {
     filmDiv = document.querySelector("#film2013");
     film = data.findRows("2013", "Year");
   }
-
   const canvas = createCanvas(filmDiv.offsetWidth, filmDiv.offsetHeight);
   canvas.parent(filmDiv);
 
@@ -66,4 +61,35 @@ function films() {
       rect(x, y, width / 16, height / 5);
     }
   }
+  // let IMDbScoreNetflix = 0,
+  //   NumberNetflixOriginal = 0,
+  //   IMDbScoreNormal = 0,
+  //   NumberOtherFilms = 0;
+
+  // for (let i = 0; i < film.length; i++) {
+  //   if (
+  //     !isNaN(film[i].getString("IMDb")) &&
+  //     film[i].getString("isNetflixOriginal") == "TRUE"
+  //   ) {
+  //     NumberNetflixOriginal += 1;
+  //     IMDbScoreNetflix += parseFloat(film[i].getString("IMDb"));
+  //   } else if (
+  //     !isNaN(film[i].getString("IMDb")) &&
+  //     film[i].getString("isNetflixOriginal") == "FALSE"
+  //   ) {
+  //     NumberOtherFilms += 1;
+  //     IMDbScoreNormal += parseFloat(film[i].getString("IMDb"));
+  //   }
+  // }
+
+  // const test = document.querySelectorAll(".score")
+  // const NetflixScore = document.createElement("p").appendChild(document.createTextNode(IMDbScoreNetflix / NumberNetflixOriginal))
+  // for(let j = 0; j < test.length; j++) {
+  //   test[j].appendChild(NetflixScore)
+  // }
 }
+//77
+//831
+//1585
+//2323
+//
