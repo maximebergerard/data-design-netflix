@@ -3,7 +3,7 @@ const scrollY = document.querySelector(".sections");
 
 scrollY.addEventListener("scroll", () => {
   findScroll();
-  if (scrollY.scrollTop >= 840 && scrollY.scrollTop <= 1100) {
+  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1100) {
     setup();
   } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
     setup();
@@ -30,7 +30,7 @@ function preload() {
 function setup() {
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
-  if (scrollY.scrollTop >= 840 && scrollY.scrollTop <= 1100) {
+  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1100) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
   } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
