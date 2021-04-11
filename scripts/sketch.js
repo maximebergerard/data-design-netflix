@@ -6,7 +6,7 @@ scrollY.addEventListener("scroll", () => {
     setup()
   } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
     setup();
-  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2711) {
+  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2715) {
     setup();
   } else if (scrollY.scrollTop <= 90) {
     setup();
@@ -14,6 +14,7 @@ scrollY.addEventListener("scroll", () => {
 });
 
 function findScroll() {
+  console.log(scrollY.scrollTop);
   const indicator = document.querySelector(".scroll-indicator");
   if (scrollY.scrollTop < 100) {
     indicator.style.display = "flex";
@@ -39,7 +40,7 @@ function films() {
   } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
-  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2711) {
+  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2715) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
   } else if (scrollY.scrollTop <= 90) {
