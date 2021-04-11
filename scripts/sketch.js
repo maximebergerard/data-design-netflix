@@ -1,45 +1,68 @@
-// //en dessous du canvas avoir des div noires + infos au hover
-// // let filmNO, filmRatings, filmNOTab, filmRatingsTab, finalTab;
-let data
+let data;
+const scrollY = document.querySelector(".sections");
+scrollY.addEventListener("scroll", () => {
+  findScroll();
+  if (scrollY.scrollTop >= 969 && scrollY.scrollTop <= 972) {
+    setup()
+  } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
+    setup();
+  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2711) {
+    setup();
+  } else if (scrollY.scrollTop <= 90) {
+    setup();
+  }
+});
+
+function findScroll() {
+  const indicator = document.querySelector(".scroll-indicator");
+  if (scrollY.scrollTop < 100) {
+    indicator.style.display = "flex";
+  } else {
+    indicator.style.display = "none";
+  }
+}
 
 function preload() {
   data = loadTable("./data.csv", "csv", "header");
 }
 
 function setup() {
-  // data = loadTable("./data.csv", "csv", "header");
-  console.log(data);
-  createCanvas(800, 200);
-  // background(0);
+  films();
+}
 
-//   finalTab = new p5.Table()
-//   finalTab.addColumn('Title')
-  // filmNOTab = filmNO.getColumn('Title')
-  const test = data.findRows('2013', 'Year')
-  // print(test.length)
-  // let countNO = 0
-  // let countNot = 0
-  // for(let i = 0; i < test.length; i++) {
-  //   if(test[i].getString('isNetflixOriginal') == 'TRUE') {
-  //     countNO ++
-  //   } else {
-  //     countNot ++
-  //   }
-  // }
-  // print(data.getColumn('isNetflixOriginal'))
+function films() {
+  let filmDiv = document.querySelector("#film2013");
+  let film = data.findRows("2013", "Year");
+  if (scrollY.scrollTop >= 969 && scrollY.scrollTop <= 972) {
+    filmDiv = document.querySelector("#film2016");
+    film = data.findRows("2016", "Year");
+  } else if (scrollY.scrollTop >= 1852 && scrollY.scrollTop <= 1856) {
+    filmDiv = document.querySelector("#film2018");
+    film = data.findRows("2018", "Year");
+  } else if (scrollY.scrollTop >= 2707 && scrollY.scrollTop <= 2711) {
+    filmDiv = document.querySelector("#film2019");
+    film = data.findRows("2019", "Year");
+  } else if (scrollY.scrollTop <= 90) {
+    filmDiv = document.querySelector("#film2013");
+    film = data.findRows("2013", "Year");
+  }
 
-  for (var x = 0; x < width; x += width / 10) {
-    for (var y = 0; y < height; y += height / 2) {
-        // fill(grid)
-      const red = color('#E50914')
-      const white = color('#fff')
-      white.setAlpha(parseInt(test[x].getString('IMDb')) * 25.5)
-      red.setAlpha(parseInt(test[x].getString('IMDb')) * 25.5)
-      fill(red)
-      rect(x, y, width / 16, height / 4)
+  const canvas = createCanvas(filmDiv.offsetWidth, filmDiv.offsetHeight);
+  canvas.parent(filmDiv);
+
+  for (let x = 0; x < width; x += width / 14) {
+    for (let y = 0; y < height; y += height / 4) {
+      let randomFilm = parseInt(random(film.length));
+      const red = color("#E50914");
+      const white = color("#fff");
+      if (film[randomFilm].getString("isNetflixOriginal") == "TRUE") {
+        red.setAlpha(parseInt(film[randomFilm].getString("IMDb")) * 25.5);
+        fill(red);
+      } else {
+        white.setAlpha(parseInt(film[randomFilm].getString("IMDb")) * 25.5);
+        fill(white);
+      }
+      rect(x, y, width / 16, height / 5);
     }
-    print(parseInt(test[x].getString('IMDb')) * 25.5 + ' : Int')
-    print(parseFloat(test[x].getString('IMDb')) * 25.5 + ': Float')
-
   }
 }
