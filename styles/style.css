@@ -107,6 +107,14 @@ section {
 }
 
 section h1 {
+  font-size: 84px;
+  font-weight: 800;
+  margin-left: 60px;
+  width: 80%;
+  line-height: 108px;
+}
+
+section h3 {
   font-size: 160px;
   margin-left: 160px;
   color: white;
@@ -124,14 +132,50 @@ section h1 {
   align-items: center;
 }
 
-.details p{
+.details-text {
+  font-size: 26px;
   text-transform: uppercase;
   margin-left: 108px;
 }
 
-.big-text {
-  font-size: 28px;
-  color: #989898;
+.legend {
+  display: flex;
+
+}
+
+.legend .netflix {
+  color: #E50914;
+}
+
+.legend .netflix, .legend .others {
+  display: flex;
+  align-items: center;
+}
+
+.square {
+  width: 28px;
+  height: 28px;
+  background-color: #fff;
+  margin: 0 24px 0 48px;
+}
+
+.square.red {
+  background-color: #E50914;
+}
+
+.score {
+  margin-top: 16px;
+}
+
+.score p:first-child {
+  color: #E50914;
+  margin-bottom: 8px;
+}
+
+.opacity {
+  text-transform: none;
+  color: #888;
+  margin-top: 16px;
 }
 
 #film2013, #film2016, #film2018, #film2019 {
@@ -139,7 +183,7 @@ section h1 {
   width: 80%;
   height: 360px;
   margin: 0 auto;
-  margin-top: 120px;
+  margin-top: 90px;
 }
 
 .infos {

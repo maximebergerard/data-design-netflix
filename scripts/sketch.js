@@ -1,17 +1,22 @@
 let data;
 const scrollY = document.querySelector(".sections");
 const totalSquares = 55;
+let windowHeight = window.innerHeight
+
+window.addEventListener('resize', () => {
+  windowHeight = window.innerHeight;
+})
 
 // Scroll for each section
 scrollY.addEventListener("scroll", () => {
   findScroll();
-  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1400) {
+  if (scrollY.scrollTop >= (820 + windowHeight) && scrollY.scrollTop <= (1400 + windowHeight)) {
     setup();
-  } else if (scrollY.scrollTop >= 1450 && scrollY.scrollTop <= 2200) {
+  } else if (scrollY.scrollTop >= (1450 + windowHeight) && scrollY.scrollTop <= (2200 + windowHeight)) {
     setup();
-  } else if (scrollY.scrollTop >= 2300) {
+  } else if (scrollY.scrollTop >= (2300 + windowHeight)) {
     setup();
-  } else if (scrollY.scrollTop <= 100) {
+  } else if (scrollY.scrollTop <= (100 + windowHeight)) {
     setup();
   }
 });
@@ -75,19 +80,19 @@ function setup() {
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
   let proportion = 0;
-  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1400) {
+  if (scrollY.scrollTop >= (820 + windowHeight) && scrollY.scrollTop <= (1400 + windowHeight)) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
     proportion = 1;
-  } else if (scrollY.scrollTop >= 1450 && scrollY.scrollTop <= 2200) {
+  } else if (scrollY.scrollTop >= (1450 + windowHeight) && scrollY.scrollTop <= (2200 + windowHeight)) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
     proportion = 6;
-  } else if (scrollY.scrollTop >= 2300) {
+  } else if (scrollY.scrollTop >= (2300 + windowHeight)) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
     proportion = 13;
-  } else if (scrollY.scrollTop <= 100) {
+  } else if (scrollY.scrollTop <= (100 + windowHeight)) {
     filmDiv = document.querySelector("#film2013");
     film = data.findRows("2013", "Year");
     proportion = -1;
@@ -125,12 +130,11 @@ function setup() {
     }
   }
 
+  // calculate score
   // let IMDbScoreNetflix = 0,
   //   NumberNetflixOriginal = 0,
   //   IMDbScoreNormal = 0,
   //   NumberOtherFilms = 0;
-
-  // let test = 0;
 
   // for (let i = 0; i < film.length; i++) {
   //   if (
