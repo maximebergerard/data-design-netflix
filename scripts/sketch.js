@@ -9,7 +9,6 @@ window.addEventListener("resize", () => {
 
 // Scroll for each section
 scrollY.addEventListener("scroll", () => {
-  console.log(scrollY.scrollTop, (windowHeight * 2) + 50);
   findScroll();
   if (
     scrollY.scrollTop <= ((windowHeight * 2) + 50) &&
