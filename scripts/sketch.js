@@ -1,22 +1,32 @@
 let data;
 const scrollY = document.querySelector(".sections");
 const totalSquares = 55;
-let windowHeight = window.innerHeight
+let windowHeight = window.innerHeight;
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   windowHeight = window.innerHeight;
-})
+});
 
 // Scroll for each section
 scrollY.addEventListener("scroll", () => {
+  console.log(scrollY.scrollTop, (windowHeight * 2) + 50);
   findScroll();
-  if (scrollY.scrollTop >= 1201 && scrollY.scrollTop <= 2150) {
+  if (
+    scrollY.scrollTop <= ((windowHeight * 2) + 50) &&
+    scrollY.scrollTop > windowHeight + 50
+  ) {
     setup();
-  } else if (scrollY.scrollTop >= 2151 && scrollY.scrollTop <= 3400) {
+  } else if (
+    scrollY.scrollTop <= windowHeight * 3 &&
+    scrollY.scrollTop > ((windowHeight * 2) + 50)
+  ) {
     setup();
-  } else if (scrollY.scrollTop >= 3401) {
+  } else if (
+    scrollY.scrollTop <= windowHeight * 4 &&
+    scrollY.scrollTop > windowHeight * 3
+  ) {
     setup();
-  } else if (scrollY.scrollTop <= 1200) {
+  } else if (scrollY.scrollTop <= windowHeight + 50) {
     setup();
   }
 });
@@ -80,19 +90,28 @@ function setup() {
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
   let proportion = 0;
-  if (scrollY.scrollTop >= 1201 && scrollY.scrollTop <= 2150) {
+  if (
+    scrollY.scrollTop <= ((windowHeight * 2) + 50) &&
+    scrollY.scrollTop > windowHeight + 50
+  ) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
     proportion = 1;
-  } else if (scrollY.scrollTop >= 2151 && scrollY.scrollTop <= 3400) {
+  } else if (
+    scrollY.scrollTop <= windowHeight * 3 &&
+    scrollY.scrollTop > ((windowHeight * 2) + 50)
+  ) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
     proportion = 6;
-  } else if (scrollY.scrollTop >= 3401) {
+  } else if (
+    scrollY.scrollTop <= windowHeight * 4 &&
+    scrollY.scrollTop > windowHeight * 3
+  ) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
     proportion = 13;
-  } else if (scrollY.scrollTop <= 1200) {
+  } else if (scrollY.scrollTop <= windowHeight + 50) {
     filmDiv = document.querySelector("#film2013");
     film = data.findRows("2013", "Year");
     proportion = -1;
@@ -117,7 +136,9 @@ function setup() {
         const white = color("#fff");
 
         if (allMovies[randomFilm].getString("isNetflixOriginal") == "TRUE") {
-          red.setAlpha(parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5);
+          red.setAlpha(
+            parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5
+          );
           fill(red);
           allMovies.splice(randomFilm, 1);
         } else {
