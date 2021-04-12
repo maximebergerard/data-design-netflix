@@ -142,3 +142,73 @@ section h1 {
   margin-top: 120px;
 }
 
+.infos {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.infos .cross {
+  width: 42px;
+  display: none;
+}
+
+.displayInfos {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.documentation {
+  width: 50%;
+  height: 90vh;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 100px;
+}
+
+.documentation h2 {
+  font-size: 80px;
+  font-weight: 800;
+  color: #989898;
+  margin-bottom: 36px;
+}
+
+.documentation h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.documentation p {
+  color: #141414;
+  font-weight: 500;
+  line-height: 30px;
+  margin-bottom: 36px;
+}
+
+.documentation::-webkit-scrollbar {
+  width: 10px;
+  right: 10px;
+}
+
+.documentation::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.documentation::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.documentation::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -2,6 +2,7 @@ let data;
 const scrollY = document.querySelector(".sections");
 const totalSquares = 55;
 
+// Scroll for each section
 scrollY.addEventListener("scroll", () => {
   findScroll();
   if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1400) {
