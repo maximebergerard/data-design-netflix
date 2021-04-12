@@ -111,22 +111,24 @@ function setup() {
   // Draw movies
   for (let x = 0, i = 0; x < width; x += width / 14) {
     for (let y = 0; y < height; y += height / 4, i++) {
-      let randomFilm = parseInt(random(allMovies.length));
-      const red = color("#E50914");
-      const white = color("#fff");
+      if (!allMovies.length == 0) {
+        let randomFilm = parseInt(random(allMovies.length));
+        const red = color("#E50914");
+        const white = color("#fff");
 
-      if (allMovies[randomFilm].getString("isNetflixOriginal") == "TRUE") {
-        red.setAlpha(parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5);
-        fill(red);
-        allMovies.splice(randomFilm, 1);
-      } else {
-        white.setAlpha(
-          parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5
-        );
-        fill(white);
-        allMovies.splice(randomFilm, 1);
+        if (allMovies[randomFilm].getString("isNetflixOriginal") == "TRUE") {
+          red.setAlpha(parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5);
+          fill(red);
+          allMovies.splice(randomFilm, 1);
+        } else {
+          white.setAlpha(
+            parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5
+          );
+          fill(white);
+          allMovies.splice(randomFilm, 1);
+        }
+        rect(x, y, width / 16, height / 5);
       }
-      rect(x, y, width / 16, height / 5);
     }
   }
 
