@@ -152,11 +152,15 @@ section h3 {
   align-items: center;
 }
 
+.others {
+  margin-left: 48px;
+}
+
 .square {
   width: 28px;
   height: 28px;
   background-color: #fff;
-  margin: 0 24px 0 48px;
+  margin: 0 24px 0 0;
 }
 
 .square.red {

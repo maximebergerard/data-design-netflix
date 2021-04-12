@@ -10,13 +10,13 @@ window.addEventListener('resize', () => {
 // Scroll for each section
 scrollY.addEventListener("scroll", () => {
   findScroll();
-  if (scrollY.scrollTop >= (820 + windowHeight) && scrollY.scrollTop <= (1400 + windowHeight)) {
+  if (scrollY.scrollTop >= 1201 && scrollY.scrollTop <= 2150) {
     setup();
-  } else if (scrollY.scrollTop >= (1450 + windowHeight) && scrollY.scrollTop <= (2200 + windowHeight)) {
+  } else if (scrollY.scrollTop >= 2151 && scrollY.scrollTop <= 3400) {
     setup();
-  } else if (scrollY.scrollTop >= (2300 + windowHeight)) {
+  } else if (scrollY.scrollTop >= 3401) {
     setup();
-  } else if (scrollY.scrollTop <= (100 + windowHeight)) {
+  } else if (scrollY.scrollTop <= 1200) {
     setup();
   }
 });
@@ -80,19 +80,19 @@ function setup() {
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
   let proportion = 0;
-  if (scrollY.scrollTop >= (820 + windowHeight) && scrollY.scrollTop <= (1400 + windowHeight)) {
+  if (scrollY.scrollTop >= 1201 && scrollY.scrollTop <= 2150) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
     proportion = 1;
-  } else if (scrollY.scrollTop >= (1450 + windowHeight) && scrollY.scrollTop <= (2200 + windowHeight)) {
+  } else if (scrollY.scrollTop >= 2151 && scrollY.scrollTop <= 3400) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
     proportion = 6;
-  } else if (scrollY.scrollTop >= (2300 + windowHeight)) {
+  } else if (scrollY.scrollTop >= 3401) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
     proportion = 13;
-  } else if (scrollY.scrollTop <= (100 + windowHeight)) {
+  } else if (scrollY.scrollTop <= 1200) {
     filmDiv = document.querySelector("#film2013");
     film = data.findRows("2013", "Year");
     proportion = -1;
