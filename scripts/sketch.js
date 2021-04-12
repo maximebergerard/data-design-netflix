@@ -1,15 +1,16 @@
 let data;
 const scrollY = document.querySelector(".sections");
+const totalSquares = 55;
 
 scrollY.addEventListener("scroll", () => {
   findScroll();
-  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1100) {
+  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1400) {
     setup();
-  } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
+  } else if (scrollY.scrollTop >= 1450 && scrollY.scrollTop <= 2200) {
     setup();
-  } else if (scrollY.scrollTop >= 2100 && scrollY.scrollTop <= 2800) {
+  } else if (scrollY.scrollTop >= 2300) {
     setup();
-  } else if (scrollY.scrollTop <= 90) {
+  } else if (scrollY.scrollTop <= 100) {
     setup();
   }
 });
@@ -27,44 +28,108 @@ function preload() {
   data = loadTable("./data.csv", "csv", "header");
 }
 
+// Create a table of netflix Originals only movies
+function addNetflixOriginals(_number, _films) {
+  let movies = [];
+  let i = 0;
+  // Adding netflix movies to array
+  for (let i = 0; i < _films.length; i++) {
+    let state = _films[i].getString("isNetflixOriginal");
+    if (state == "TRUE" && movies.length <= _number) {
+      movies.push(_films[i]);
+    }
+  }
+  return movies;
+}
+
+// Create a table of NOT netflix Originals only movies
+function addOthersMovies(_number, _films) {
+  let movies = [];
+  let i = 0;
+  // Adding netflix movies to array
+  for (let i = 0; i < _films.length; i++) {
+    let state = _films[i].getString("isNetflixOriginal");
+    if (state == "FALSE" && movies.length <= _number) {
+      movies.push(_films[i]);
+    }
+  }
+  return movies;
+}
+
+// Shuffle arrays
+function shuffleMovies(_array) {
+  for (let i = _array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [_array[i], _array[j]] = [_array[j], _array[i]];
+  }
+  return _array;
+}
+
+//
+// ------------------------------------------
+//
+
 function setup() {
+  // SCROLL BEHAVIOR
   let filmDiv = document.querySelector("#film2013");
   let film = data.findRows("2013", "Year");
-  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1100) {
+  let proportion = 0;
+  if (scrollY.scrollTop >= 820 && scrollY.scrollTop <= 1400) {
     filmDiv = document.querySelector("#film2016");
     film = data.findRows("2016", "Year");
-  } else if (scrollY.scrollTop >= 1350 && scrollY.scrollTop <= 2000) {
+    proportion = 1;
+  } else if (scrollY.scrollTop >= 1450 && scrollY.scrollTop <= 2200) {
     filmDiv = document.querySelector("#film2018");
     film = data.findRows("2018", "Year");
-  } else if (scrollY.scrollTop >= 2100 && scrollY.scrollTop <= 2800) {
+    proportion = 6;
+  } else if (scrollY.scrollTop >= 2300) {
     filmDiv = document.querySelector("#film2019");
     film = data.findRows("2019", "Year");
-  } else if (scrollY.scrollTop <= 90) {
+    proportion = 13;
+  } else if (scrollY.scrollTop <= 100) {
     filmDiv = document.querySelector("#film2013");
     film = data.findRows("2013", "Year");
+    proportion = -1;
   }
   const canvas = createCanvas(filmDiv.offsetWidth, filmDiv.offsetHeight);
   canvas.parent(filmDiv);
 
-  for (let x = 0; x < width; x += width / 14) {
-    for (let y = 0; y < height; y += height / 4) {
-      let randomFilm = parseInt(random(film.length));
+  // Creating movies
+  let netflixOriginals = addNetflixOriginals(proportion, film);
+  let otherMovies = addOthersMovies(
+    totalSquares - netflixOriginals.length,
+    film
+  );
+  let allMovies = shuffleMovies([].concat(netflixOriginals, otherMovies));
+
+  // Draw movies
+  for (let x = 0, i = 0; x < width; x += width / 14) {
+    for (let y = 0; y < height; y += height / 4, i++) {
+      let randomFilm = parseInt(random(allMovies.length));
       const red = color("#E50914");
       const white = color("#fff");
-      if (film[randomFilm].getString("isNetflixOriginal") == "TRUE") {
-        red.setAlpha(parseInt(film[randomFilm].getString("IMDb")) * 25.5);
+
+      if (allMovies[randomFilm].getString("isNetflixOriginal") == "TRUE") {
+        red.setAlpha(parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5);
         fill(red);
+        allMovies.splice(randomFilm, 1);
       } else {
-        white.setAlpha(parseInt(film[randomFilm].getString("IMDb")) * 25.5);
+        white.setAlpha(
+          parseInt(allMovies[randomFilm].getString("IMDb")) * 25.5
+        );
         fill(white);
+        allMovies.splice(randomFilm, 1);
       }
       rect(x, y, width / 16, height / 5);
     }
   }
+
   // let IMDbScoreNetflix = 0,
   //   NumberNetflixOriginal = 0,
   //   IMDbScoreNormal = 0,
   //   NumberOtherFilms = 0;
+
+  // let test = 0;
 
   // for (let i = 0; i < film.length; i++) {
   //   if (
@@ -81,15 +146,4 @@ function setup() {
   //     IMDbScoreNormal += parseFloat(film[i].getString("IMDb"));
   //   }
   // }
-
-  // const test = document.querySelectorAll(".score")
-  // const NetflixScore = document.createElement("p").appendChild(document.createTextNode(IMDbScoreNetflix / NumberNetflixOriginal))
-  // for(let j = 0; j < test.length; j++) {
-  //   test[j].appendChild(NetflixScore)
-  // }
 }
-//77
-//831
-//1585
-//2323
-//
